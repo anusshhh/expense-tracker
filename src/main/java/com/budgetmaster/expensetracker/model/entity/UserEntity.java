@@ -1,6 +1,10 @@
-package com.budgetmaster.expensetracker.entity;
+package com.budgetmaster.expensetracker.model.entity;
+
+import com.budgetmaster.expensetracker.security.Role;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -21,4 +25,6 @@ public class UserEntity {
 	String lastName;
 	String email;
 	String password;
+	@Enumerated(EnumType.STRING)
+	Role role;
 }
