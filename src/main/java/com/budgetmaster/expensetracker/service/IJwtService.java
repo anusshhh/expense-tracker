@@ -1,6 +1,10 @@
 package com.budgetmaster.expensetracker.service;
 
+import javax.crypto.SecretKey;
+
 public interface JwtService {
+	
+	SecretKey getSignInKey();
 	
 	String generateToken(String username);
 
