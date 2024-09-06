@@ -1,14 +1,16 @@
 package com.budgetmaster.expensetracker.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.crypto.SecretKey;
 
-public interface JwtService {
+public interface IJwtService {
 	
 	SecretKey getSignInKey();
 	
-	String generateToken(String username);
+	String generateToken(UserDetails userDetails);
 
-    String extractUsername(String token);
+    public String extractUsername(String token);
 
-    boolean isTokenValid(String token, String username);
+    boolean isTokenValid(String token, UserDetails userDetails);
 }
