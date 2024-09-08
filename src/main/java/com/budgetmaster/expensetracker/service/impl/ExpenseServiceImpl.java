@@ -30,14 +30,12 @@ public class ExpenseServiceImpl implements IExpenseService {
 
 	@Override
 	public ExpenseDTO addExpense(ExpenseDTO expenseDTO) {
-		System.out.println("first line of service");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 		ExpenseEntity expenseEntity = expenseConverter.toExpenseEntity(expenseDTO);
 		CategoryEntity categoryEntity = categoryRepository.findById(expenseDTO.getCategoryId()).orElseThrow();
 		UserEntity userEntity = userRepository.findByEmail(username).orElseThrow();
 		expenseEntity.setCategoryEntity(categoryEntity);	
-		System.out.println("nai aya");
 		expenseEntity.setUserEntity(userEntity);
 		expenseEntity = expenseRepository.save(expenseEntity);
 		return expenseConverter.toExpenseDTO(expenseEntity);

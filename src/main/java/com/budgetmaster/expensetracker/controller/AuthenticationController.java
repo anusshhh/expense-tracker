@@ -11,6 +11,7 @@ import com.budgetmaster.expensetracker.model.dto.AuthenticationResponse;
 import com.budgetmaster.expensetracker.model.dto.RegisterRequest;
 import com.budgetmaster.expensetracker.service.IAuthenticationService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -20,12 +21,12 @@ public class AuthenticationController {
 	private final IAuthenticationService authService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+	public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
+	public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
 		AuthenticationResponse response = authService.login(authenticationRequest);
         return ResponseEntity.ok(response);
 	}

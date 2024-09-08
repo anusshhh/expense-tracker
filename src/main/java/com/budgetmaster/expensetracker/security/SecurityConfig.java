@@ -25,7 +25,6 @@ public class SecurityConfig {
 		http.csrf(csrf -> csrf.disable()).headers(it -> it.frameOptions(it2 -> it2.disable()))
 				.authorizeHttpRequests(request -> request.requestMatchers("/expense-tracker-api/v1/**").permitAll()
 						.anyRequest().authenticated())
-//		.authorizeHttpRequests(request->request.anyRequest().permitAll())
 				.sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)
