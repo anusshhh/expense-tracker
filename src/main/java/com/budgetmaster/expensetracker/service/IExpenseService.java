@@ -9,9 +9,11 @@ public interface IExpenseService {
 	public ExpenseDTO addExpense(ExpenseDTO expenseDTO);
 
 	public void deleteExpense(Long id);
-	
-	public ExpenseDTO editExpense(ExpenseDTO expenseDTO);
-	
-	public List<ExpenseDTO> getExpenseByCategory(Long categoryId );
+
+	public ExpenseDTO editExpense(Long id, ExpenseDTO expenseDTO);
+
+	public List<ExpenseDTO> getExpenseByCategory(Long categoryId);
+
+	List<ExpenseDTO> getAllExpenses();
 
 }

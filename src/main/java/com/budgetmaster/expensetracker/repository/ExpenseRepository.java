@@ -10,6 +10,6 @@ import com.budgetmaster.expensetracker.model.entity.ExpenseEntity;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<ExpenseEntity,Long> {
-	public List<ExpenseEntity> findAllByCategory(CategoryEntity category);
+	public List<ExpenseEntity> findAllByCategoryEntity(CategoryEntity categoryEntity);
 
 }
