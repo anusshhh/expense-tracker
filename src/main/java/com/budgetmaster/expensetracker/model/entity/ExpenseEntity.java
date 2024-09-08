@@ -13,19 +13,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "expense_table")
 public class ExpenseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String title;
+	private String description;
 	private Double amount;
 	private LocalDate date;
-	private String description;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private CategoryEntity categoryEntity;

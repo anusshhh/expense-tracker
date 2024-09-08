@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ExpenseDTO {
 	private long id;
+	private String title;
+	private String description;
 	private Double amount;
 	private LocalDate date;
-	private String description;
 	private Long categoryId;
 	private Long userId;
 }
