@@ -75,4 +75,6 @@ public class ExpenseServiceImpl implements IExpenseService {
 		return expenseList.stream().map(expenseEntity -> expenseConverter.toExpenseDTO(expenseEntity))
 				.collect(Collectors.toList());
 	}
+	
+	
 }
