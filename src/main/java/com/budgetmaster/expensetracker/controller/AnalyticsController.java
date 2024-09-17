@@ -2,7 +2,6 @@ package com.budgetmaster.expensetracker.controller;
 
 import com.budgetmaster.expensetracker.model.dto.AnalyticsDTO;
 import com.budgetmaster.expensetracker.service.IAnalyticsService;
-import com.budgetmaster.expensetracker.service.impl.AnalyticsServiceImpl;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AnalyticsController {
 	private final IAnalyticsService analyticsService;
 
-	@GetMapping("/by-date")
-	public ResponseEntity<AnalyticsDTO> getMonthlyReport(@RequestParam @Min(1) @Max(12) int month, @RequestParam @Min(2000) int year){
-		AnalyticsDTO analyticsDTO = analyticsService.getMonthlyExpenseSummary(month,year);
+	@GetMapping
+	public ResponseEntity<AnalyticsDTO> findReportByMonth(@RequestParam @Min(1) @Max(12) int month, @RequestParam @Min(2000) int year){
+		AnalyticsDTO analyticsDTO = analyticsService.findReportByMonth(month,year);
 		return ResponseEntity.ok(analyticsDTO);
 	}
 
