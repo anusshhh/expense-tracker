@@ -1,5 +1,6 @@
 package com.budgetmaster.expensetracker.model.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Data;
@@ -12,6 +13,6 @@ public class IncomeDTO {
     private String source;
     private Double amount;
     private String description;
-    private LocalDateTime date;
+    private LocalDate date;
     private Long userId;
 }

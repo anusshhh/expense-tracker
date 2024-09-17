@@ -8,7 +8,7 @@ public interface IIncomeService {
 
     public IncomeDTO addIncome(IncomeDTO incomeDTO);
 
-    public IncomeDTO editIncome(Long id, IncomeDTO incomeDTO);
+    public IncomeDTO updateIncome(Long id, IncomeDTO incomeDTO);
 
     public void delete(Long id);
 

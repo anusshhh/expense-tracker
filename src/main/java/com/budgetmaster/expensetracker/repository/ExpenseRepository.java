@@ -1,5 +1,6 @@
 package com.budgetmaster.expensetracker.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,5 @@ import com.budgetmaster.expensetracker.model.entity.ExpenseEntity;
 public interface ExpenseRepository extends JpaRepository<ExpenseEntity,Long> {
 	public List<ExpenseEntity> findAllByCategoryEntity(CategoryEntity categoryEntity);
 
+	public List<ExpenseEntity> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }

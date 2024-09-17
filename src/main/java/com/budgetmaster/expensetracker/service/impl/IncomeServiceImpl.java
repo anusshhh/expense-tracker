@@ -2,8 +2,6 @@ package com.budgetmaster.expensetracker.service.impl;
 
 import com.budgetmaster.expensetracker.converter.IncomeConverter;
 import com.budgetmaster.expensetracker.model.dto.IncomeDTO;
-import com.budgetmaster.expensetracker.model.entity.CategoryEntity;
-import com.budgetmaster.expensetracker.model.entity.ExpenseEntity;
 import com.budgetmaster.expensetracker.model.entity.IncomeEntity;
 import com.budgetmaster.expensetracker.model.entity.UserEntity;
 import com.budgetmaster.expensetracker.repository.IncomeRepository;
@@ -11,14 +9,12 @@ import com.budgetmaster.expensetracker.repository.UserRepository;
 import com.budgetmaster.expensetracker.service.IIncomeService;
 import com.budgetmaster.expensetracker.utils.AuthenticationUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class IncomeServiceImpl implements IIncomeService {
 
     private final IncomeRepository incomeRepository;
@@ -37,7 +33,7 @@ public class IncomeServiceImpl implements IIncomeService {
     }
 
     @Override
-    public IncomeDTO editIncome(Long id, IncomeDTO incomeDTO) {
+    public IncomeDTO updateIncome(Long id, IncomeDTO incomeDTO) {
         IncomeEntity existingIncomeRecord = incomeRepository.findById(id).orElseThrow();
         IncomeEntity updatedIncome = incomeConverter.toIncomeEntity(incomeDTO);
         updatedIncome.setId(existingIncomeRecord.getId());
@@ -47,11 +43,16 @@ public class IncomeServiceImpl implements IIncomeService {
 
     @Override
     public void delete(Long id) {
-
+        incomeRepository.deleteById(id);
     }
 
     @Override
     public List<IncomeDTO> getAllIncome() {
-        return List.of();
+        String username = AuthenticationUtils.getAuthenticatedUsername();
+        UserEntity userEntity = userRepository.findByEmail(username).orElseThrow();
+        List<IncomeEntity> incomeEntities = incomeRepository.findByUserEntity(userEntity);
+        return incomeEntities.stream()
+                .map(incomeConverter::toIncomeDTO)
+                .toList();
     }
 }
