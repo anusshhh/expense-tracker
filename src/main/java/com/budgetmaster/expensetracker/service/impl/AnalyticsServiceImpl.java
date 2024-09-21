@@ -11,7 +11,6 @@ import com.budgetmaster.expensetracker.service.IAnalyticsService;
 import com.budgetmaster.expensetracker.utils.AuthenticationUtils;
 import com.budgetmaster.expensetracker.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,7 +28,6 @@ public class AnalyticsServiceImpl implements IAnalyticsService {
     public AnalyticsDTO findReportByMonth(int month, int year) {
         String username = AuthenticationUtils.getAuthenticatedUsername();
         UserEntity userEntity = userRepository.findByEmail(username).orElseThrow();
-
 
         LocalDate startDate = LocalDate.of(year,month,1);
         LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
