@@ -18,6 +18,7 @@ public class CategoryConverter {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setId(categoryEntity.getId());
 		categoryDTO.setName(categoryEntity.getName());
+		categoryDTO.setUserId(categoryEntity.getUser().getId());
 		return categoryDTO;
 	}
 
